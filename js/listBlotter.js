@@ -18,7 +18,7 @@ const MathUtils = {
   const blotter = new Blotter(material);
   // Initialize the Blotter Text on all HTML elements with data-blotter.
   const blotterElems = [...document.querySelectorAll('[data-blotter]')];
-  const projList = ["FASHION⠀ARCHIVE", "INCORRECT⠀THOUGHTS", "LIGHTYEARS", "CURATED⠀TUNES"];
+  const projList = ["POYS", "INCORRECT⠀THOUGHTS", "LIGHTYEARS", "CURATED⠀TUNES"];
   var i=0;
   blotterElems.forEach((el) => {
     const text = new Blotter.Text(projList[i], {
