@@ -12,13 +12,13 @@ const MathUtils = {
   const material = new Blotter.LiquidDistortMaterial();
   // Set the default material uniform values.
   material.uniforms.uSpeed.value = .5;
-  material.uniforms.uVolatility.value = 0;
+  material.uniforms.uVolatility.value = 0.01;
   material.uniforms.uSeed.value = Math.random();
   // Create the Blotter instance.
   const blotter = new Blotter(material);
   // Initialize the Blotter Text on all HTML elements with data-blotter.
   const blotterElems = [...document.querySelectorAll('[data-blotter]')];
-  const projList = ["POYS", "INCORRECT⠀THOUGHTS", "LIGHTYEARS", "CURATED⠀TUNES"];
+  const projList = ["POYS"];
   var i=0;
   blotterElems.forEach((el) => {
     const text = new Blotter.Text(projList[i], {
@@ -41,7 +41,7 @@ const MathUtils = {
   // The faster the scrolling the more the value changes.
   let currentScroll = window.pageYOffset;
   // The volatility is the uniform that will change.  
-  let volatility = 0;
+  let volatility = 0.05;
   // It will go from 0 (not scrolling) to 0.9 (scrolling at a speed of maxscroll).
   const maxscroll = 10;
   const uniformValuesRange = [0,0.9];
@@ -52,7 +52,7 @@ const MathUtils = {
     // How much was scrolled from the last repaint.
     const scrolled = Math.abs(newScroll - currentScroll);
     // Get the new value of volatility.
-    volatility =  MathUtils.lerp(volatility, Math.min(MathUtils.lineEq(uniformValuesRange[1], uniformValuesRange[0], maxscroll, 0, scrolled), 0.9), 0.05);
+    volatility =  MathUtils.lerp(volatility, Math.min(MathUtils.lineEq(uniformValuesRange[1], uniformValuesRange[0], maxscroll, 0, scrolled), 0.9), 0.05) + 0.001;
     // Set the volatility.
     material.uniforms.uVolatility.value = volatility;
     // Update the current scroll.
